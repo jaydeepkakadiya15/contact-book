@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <h1 align="center">Contact Lists</h1>
+
+    <button class="return_btn">
+        <a href="/dashboard/" >Return to Dashboard</a>
+    </button>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="1" align="center" class="viewform">
+            <tr class="form_head">
+                <th>
+                    Images
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>City</th>
+                <th>
+                    Contact Number
+                </th>
+                <th align="center">
+                    Address
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            {% for x in data %}
+            <tr>
+                <th><img src="/media/{{x.image}}" width='80px' height="80px" style="border-radius: 50%" alt=""></th>
+                <th>{{x.name}}</th>
+                <th>{{x.email}}</th>
+                <th>{{x.gender}}</th>
+                <th>{{x.city}}</th>
+                <th>{{x.contact}}</th>
+                <th>{{x.address}}</th>
+                <th class="action_btn">
+                    <a href="/edit/{{x.id}}">Edit </a>
+                    <a href="/delete/{{x.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+                </th>     
+            </tr>
+            {% endfor %}
+    
+        </table>
+    </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
+  
+</body>
+</html>

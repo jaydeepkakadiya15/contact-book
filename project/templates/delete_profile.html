@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <h1 align="center">Delete Account</h1>
+
+ 
+
+        <form method="post">
+            {% csrf_token %}
+            <table align="center">
+                <tr>
+                    <td>Email : </td>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+
+                <tr>
+                    <td>Password : </td>
+                    <td><input type="password" name="password" required></td>
+                </tr>
+                     
+                <tr>
+                    <td></td>
+                    <td><button  type="submit" class="deletepro_btn">Delete Account</button></td>
+                </tr>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            
+                {% if success %}
+                    <p style="color: green;">{{ success }}</p>
+                {% endif %}
+            </table>
+        </form>
+
+        
+    <br>
+    <button class="return_btn">
+        <a href="/dashboard/" >Return to Dashboard</a>
+    </button>   
+    
+</body>
+</html>

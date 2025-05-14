@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+
+</head>
+<body>
+    <h1 align="center">Edit Profile</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <th>Name:</th>
+                <td><input type="text" name="name" value="{{ user.name }}">
+                </td>
+            </tr>
+            
+            <tr>
+                <th>Email :</th>
+                <td><input type="email" name="email" value="{{ user.email }}"></td>
+            </tr>
+
+            <tr>
+                <th>Image :</th>
+                <td><input type="file" name="image"></td>
+            </tr>
+    
+           <tr>
+                <td></td>
+                <td class="editpro_btn"><button type="submit">Save Changes</button></td>
+           </tr>
+           {% if error %}
+                <p style="color:red;">{{ error }}</p>
+           {% endif %}
+            {% if success %}
+                <p style="color:green;">{{ success }}</p>
+            {% endif %}
+        </table>
+
+    </form>
+
+    <br>
+    <button class="return_btn">
+        <a href="/dashboard/" >Return to Dashboard</a>
+    </button>
+</body>
+</html>

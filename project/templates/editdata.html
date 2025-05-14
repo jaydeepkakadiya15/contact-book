@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        a,td,th{
+            text-decoration: none;
+            color: black;
+            font-size: large;
+            font-weight: bold;
+            font-family: Book Antiqua;
+        }
+
+  
+    </style>
+</head>
+<body>
+    <h1 align="center">Edit data</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <table align="center">
+            <tr>
+                <th>
+                    Name :
+                </th>
+                <td colspan="3">
+                    <input type="text" name="name" value={{data.name}}>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Email :
+                </th>
+                <td colspan="3">
+                    <input type="text" name="email" value="{{data.email}}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Gender :
+                </th>
+                <td>
+                    <input type="radio" name="gender" value="Male"{% if data.gender == "Male" %} checked {% endif %}>Male
+                </td>
+                <td>
+                    <input type="radio" name="gender" value="Female"{% if data.gender == "Female" %} checked {% endif %}>Female
+                </td>
+                <td>
+                    <input type="radio" name="gender" value="Other"{% if data.gender == "Other" %} checked {% endif %}>Other
+                </td>
+            </tr>
+            <tr>
+                <th>City :</th>
+                <th colspan="3">
+                    <select name="city" id="">City
+                        <option value="--Select City">select</option>
+                        <option value="surat" {% if data.city == "surat" %}selected{% endif %}>Surat</option>
+                        <option value="vadodara" {% if data.city == "vadodara" %}selected{% endif %}>Vadodara</option>
+                        <option value="rajkot" {% if data.city == "rajkot" %}selected{% endif %}>Rajkot</option>
+                        <option value="bhavnagar" {% if data.city == "bhavnagar" %}selected{% endif %}>Bhavnagar</option>
+                        <option value="baroda" {% if data.city == "baroda" %}selected{% endif %}>Baroda</option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Contact :
+                </th>
+                <td colspan="3">
+                    <input type="number" maxlength="10" min="10" name="contact" value="{{data.contact}}">
+                </td>
+            </tr>   
+            <tr>
+                <th>
+                    Address : 
+                </th>
+                <th colspan="3">
+                    <textarea name="address" id="">{{data.address}}</textarea>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Image :
+                </th>
+                <th colspan="3">
+                   <input type="file" name="image">
+                </th>
+            </tr>
+            <tr>
+                <th colspan="4" class="edit_savebtn">
+                    <button type="submit" value="Save">Save</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

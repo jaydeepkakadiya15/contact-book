@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+<body>
+    <h1 align="center">Dashboard</h1>
+
+    <div style="background-color: #3e9697; width: 35%; margin: 0 auto; padding: 20px 0px; border-radius: 20px; box-shadow: 1px 3px 7px 4px rgba(0, 0, 0, 0.15); ">
+        <div align="center">
+            <img src="/media/{{user.image}}" alt="Profile Picture" height="100" width="100" style="border-radius: 50%;">
+        </div>
+
+        <h2 align="center">Name : {{ user.name }}</h2>
+        <h3 align="center">Email : {{ user.email }}</h3>
+    </div>
+
+    <br>
+    <br>
+
+    <form action="" method="post" align="center">
+        {% csrf_token%}
+        <button class="dashboard_btn"><a href="/contact/">Add Contact</a></button>
+        <button class="dashboard_btn"><a href="/view/">View Contact</a></button>
+        <button class="dashboard_btn"><a href="/change-password/">Change Password</a></button>
+        <button class="dashboard_btn"><a href="/edit-profile">Edit Profile</a></button>
+        <button class="dashboard_btn"><a href="/delete-profile">Delete Profile</a></button>
+        <button class="dashboard_btn"><a href="/logout/">Log Out</a></button>
+
+    </form>
+</body>
+</html>

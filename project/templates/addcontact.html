@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+
+</head>
+<body>
+    <h1 align="center">Add New Contact</h1>
+    <form action="{% if user.id %}/update/{{data.id}}/{% endif %}" method="post" class="add_contact" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>
+                    Name :
+                </td>
+                <td>
+                    <input type="text" name="name" id="" value="{{data.name}}" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email :
+                </td>
+                <td>
+                    <input type="email" name="email" id="" value="{{data.email}}" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender :
+                </td>
+                <td>
+                    <input type="radio" name="gender" value="Male" {% if data.gender == "Male" %}checked{% endif %} required>Male
+                    <input type="radio" name="gender" value="Female" {% if data.gender == "Female" %}checked{% endif %} required>Female
+                    <input type="radio" name="gender" value="Other" {% if data.gender == "Other" %}checked{% endif %} required>Other
+                </td>
+            </tr>
+            <tr>
+                <td>City :</td>
+                <td>
+                    <select name="city" id="" required>City
+                        <option value="--Select City--">select</option>
+                        <option value="surat" {% if data.city == "surat" %}selected{% endif %}>Surat</option>
+                        <option value="vadodara" {% if data.city == "vadodara" %}selected{% endif %}>Vadodara</option>
+                        <option value="rajkot" {% if data.city == "rajkot" %}selected{% endif %}>Rajkot</option>
+                        <option value="bhavnagar" {% if data.city == "bhavnagar" %}selected{% endif %}>Bhavnagar</option>
+                        <option value="baroda" {% if data.city == "baroda" %}selected{% endif %}>Baroda</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contact Number :
+                </td>
+                <td>
+                    <input type="number" name="contact" id="" value="{{data.contact}}" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address
+                </td>
+                <td>
+                    <textarea name="address" id="" required>{{data.address}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    image
+                </td>
+                <td>
+                    <input type="file" name="image" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 
+                </td>
+                <td>
+                    <input type="hidden" name="user_id" value="{{user_id}}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button value="save">Add Contact</button>
+                   
+                </td>
+            </tr>
+            <button class="return_btn">
+                <a href="/dashboard/" >Return to Dashboard</a>
+            </button>
+            
+        </table>
+    </form>
+  
+</body>
+</html>
